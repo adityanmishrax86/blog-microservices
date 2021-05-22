@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import PostCreate from "../PostCreate";
 import PostList from "../PostList";
@@ -15,7 +14,7 @@ const Post = ({ setUserToParent }) => {
             setUser(loggedInUser);
             setToParent();
         }
-    }, [])
+    })
 
     return (
         <div className="container mt-5">

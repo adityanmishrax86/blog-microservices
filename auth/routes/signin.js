@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
-const router = require("Express").Router();
+const router = require("express").Router();
 const axios = require('axios');
 const User = require("../models/user");
 const { compare } = require("../service/password");
+require("dotenv").config();
 
 router.get("/auth/signin", (req, res) => {
     res.send("Success");
@@ -29,14 +30,14 @@ router.post("/auth/signin", async (req, res) => {
             id: existingUser.id,
             email: existingUser.email
         },
-        'asdf'
+        process.env.JWT_KEY
     )
 
     req.session = {
         jwt: userJWT
     }
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus:4005/events', {
         type: 'UserLoggedIn',
         data: {
             id: existingUser.id,

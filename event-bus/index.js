@@ -16,22 +16,22 @@ app.post('/events', (req, res) => {
     const event = req.body;
     events.push(event);
 
-    axios.post('http://localhost:4000/events', event).catch(err => {
+    axios.post('http://posts:4000/events', event).catch(err => {
         logger.error(`Error ----> ${err.message}`);
     });
-    axios.post('http://localhost:4001/events', event).catch(err => {
-        logger.error(`Error ----> ${err.message}`);
-
-    });
-    axios.post('http://localhost:4002/events', event).catch(err => {
+    axios.post('http://comments:4001/events', event).catch(err => {
         logger.error(`Error ----> ${err.message}`);
 
     });
-    axios.post('http://localhost:4003/events', event).catch(err => {
+    axios.post('http://query:4002/events', event).catch(err => {
         logger.error(`Error ----> ${err.message}`);
 
     });
-    axios.post('http://localhost:4009/events', event).catch(err => {
+    axios.post('http://moderation:4003/events', event).catch(err => {
+        logger.error(`Error ----> ${err.message}`);
+
+    });
+    axios.post('http://auth:4009/events', event).catch(err => {
         logger.error(`Error ----> ${err.message}`);
 
     });

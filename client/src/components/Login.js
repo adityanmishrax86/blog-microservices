@@ -20,9 +20,9 @@ export default function Login() {
                 localStorage.setItem('user', name)
                 history.push("/");
             }
-            console.log(response.data);
+            // console.log(response.data);
         } catch (err) {
-            console.log(err?.response?.data);
+            alert(err?.response?.data?.message);
         }
     }
     return (

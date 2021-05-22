@@ -22,7 +22,7 @@ const PostList = () => {
                 <div className="card-body">
                     <h3>{post.title}</h3>
                     <CommentCreate postId={post.id} />
-                    {/* <CommentList comments={post.comments} /> */}
+                    <CommentList comments={post.comments} />
                 </div>
             </div>
         )

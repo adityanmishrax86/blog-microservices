@@ -1,8 +1,9 @@
 const { body, validationResult } = require("express-validator")
 const jwt = require('jsonwebtoken');
-const router = require("Express").Router();
+const router = require("express").Router();
 const axios = require('axios');
 const User = require("../models/user");
+require("dotenv").config();
 
 router.get("/auth", (req, res) => {
     res.send("Success");
@@ -37,11 +38,11 @@ router.post('/auth/signup', [
         const userJWT = jwt.sign({
             id: user.id,
             email: user.email
-        }, 'asdf');
+        }, process.env.JWT_KEY);
 
         req.session.jwt = userJWT;
 
-        await axios.post('http://localhost:4005/events', {
+        await axios.post('http://event-bus:4005/events', {
             type: 'UserCreated',
             data: {
                 name,

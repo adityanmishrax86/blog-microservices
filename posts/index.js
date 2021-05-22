@@ -22,7 +22,7 @@ app.post('/create', async (req, res) => {
         id, title
     };
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus:4005/events', {
         type: 'PostCreated',
         data: {
             id, title
@@ -33,8 +33,8 @@ app.post('/create', async (req, res) => {
 });
 
 app.post('/events', (req, res) => {
-   console.log("Received Event:", req.body.type);
-   res.send({});
+    console.log("Received Event:", req.body.type);
+    res.send({});
 });
 
 app.listen(4000, () => {

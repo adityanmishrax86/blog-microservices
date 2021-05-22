@@ -7,6 +7,7 @@ const signOutRouter = require("../routes/signout");
 const currentUser = require("../routes/currentUser");
 const app = require("express")();
 const cors = require('cors');
+require("dotenv").config();
 
 // middlewares
 app.use(cors());
@@ -38,10 +39,9 @@ app.use((err, req, res, next) => {
 
 // database setup
 try {
-    mongoose.connect("mongodb://localhost:27017/Users", {
+    mongoose.connect(`mongodb://mongodb:27017/Users`, {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true
+
     })
     console.log("Connection to Database is Successful");
 } catch (err) {

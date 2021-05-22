@@ -5,7 +5,7 @@ const router = require("express").Router();
 router.post("/auth/signout", (req, res) => {
     req.session = null;
 
-    axios.post("http://localhost:4005/events", {
+    axios.post("http://event-bus:4005/events", {
         type: "UserLoggedOut",
         data: {}
     })
