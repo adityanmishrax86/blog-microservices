@@ -1,69 +1,77 @@
-version: '3.8'
+version: '3'
 services: 
     mongodb:
-        image: mongo
-        restart: always
+        image: mongo:4.4
         ports: 
-            - "27017:27017"
+            - 0.0.0.0:27017:27017
         networks:
             - app-network
     
     event-bus:
-        image: azax25547/event-bus
-        restart: unless-stopped
+        build: "./event-bus"
         ports: 
             - "4005:4005"
         networks:
             - app-network
+        volumes: 
+            - ./event-bus:/app
 
     posts:
-        image: azax25547/posts
-        restart: unless-stopped
+        build: "./posts"
         ports: 
             - "4000:4000"
         networks:
             - app-network
+        volumes: 
+            - ./posts:/app
     
     comments:
-        image: azax25547/comments
-        restart: unless-stopped
+        build: "./comments"
         ports: 
             - "4001:4001"
         networks:
             - app-network
+        volumes: 
+            - ./comments:/app
+
     moderation: 
-        image: azax25547/moderation
-        restart: unless-stopped
+        build: "./moderation"
         ports: 
             - "4003:4003"
         networks:
             - app-network
+        volumes: 
+            - ./moderation:/app
     
     query:
-        image: azax25547/query
-        restart: unless-stopped
+        build: "./query"
         ports: 
             - "4002:4002"
         networks:
             - app-network
+        volumes: 
+            - ./query:/app
     
     auth:
-        image: azax25547/auth
-        restart: unless-stopped
+        build: "./auth"
         environment: 
             JWT_KEY: "asdf"
         ports: 
             - "4009:4009"
-        
         networks:
             - app-network
+        volumes: 
+            - ./auth:/app
+        depends_on:
+            - mongodb 
     client:
-        image: azax25547/client
-        restart: unless-stopped
+        build: "./client"
         ports: 
             - "3000:80"
         networks:
             - app-network
+        volumes: 
+            - ./client:/app
 networks: 
     app-network:
         driver: bridge
