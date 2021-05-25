@@ -15,7 +15,7 @@ posts/package-lock.json
 /client/node_modules
 /client/*.pnp
 /client/*.pnp.js
-
+/client/.env
 # testing
 /client/coverage
 

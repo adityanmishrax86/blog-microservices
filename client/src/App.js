@@ -24,18 +24,19 @@ const App = () => {
                         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                             <ul className="navbar-nav ml-auto">
 
-                                <li className="nav-item">
+                               {!user && (<> <li className="nav-item">
                                     <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="nav-link" to={"/sign-in"}>Sign In</Link>
-                                </li>
+                                </li> </>)}
                                 {
-                                    (
+                                  user && (
                                         <li className="nav-item">
                                             <Link className="nav-link" to={"/"} onClick={() => {
-                                                axios.post("http://localhost:4009/auth/signout", {});
+                                                axios.post(`http://${process.env.REACT_APP_HOST_ADDRESS}:4009/auth/signout`, {});
                                                 localStorage.removeItem('user');
+						window.location.reload();
                                             }}>Sign out</Link>
                                         </li>
                                     )

@@ -15,7 +15,7 @@ export default () => {
         e.preventDefault();
         // console.log(name, email, password);
         try {
-            const response = await axios.post("http://localhost:4009/auth/signup", {
+            const response = await axios.post(`http://${process.env.REACT_APP_HOST_ADDRESS}:4009/auth/signup`, {
                 name,
                 email,
                 password

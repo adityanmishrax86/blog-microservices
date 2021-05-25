@@ -11,7 +11,7 @@ export default function Login() {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:4009/auth/signin", {
+            const response = await axios.post(`http://${process.env.REACT_APP_HOST_ADDRESS}:4009/auth/signin`, {
                 email,
                 password
             });
